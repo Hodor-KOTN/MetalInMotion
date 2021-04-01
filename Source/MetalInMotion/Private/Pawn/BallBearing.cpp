@@ -1,7 +1,6 @@
 #include "BallBearing.h"
-#include "Engine/Canvas.h"
+#include "DebugUtilities.h"
 #include "DisplayDebugHelpers.h"
-
 
 FName ABallBearing::BallMeshComponentName = TEXT("BallMeshComp");
 float ABallBearing::DebugXOffset = 50.f;
@@ -24,11 +23,8 @@ void ABallBearing::DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& debugD
 {
 	if (debugDisplay.IsDisplayOn(TEXT("ball")))
 	{
-		yPos += 20.f;
-		FDisplayDebugManager& dm = canvas->DisplayDebugManager;
-		dm.SetDrawColor(FColor::White);
-		dm.DrawString(FString::Printf(TEXT("Speed: %f"), GetVelocity().Size() / 100.f), DebugXOffset);
-		dm.DrawString(FString::Printf(TEXT("InContact: %s"), InContact ? TEXT("true") : TEXT("false")), DebugXOffset);
+		UDebugUtilities::DrawStatistic(canvas, yPos, TEXT("Speed:"), GetVelocity().Size() / 100.f);
+		UDebugUtilities::DrawStatistic(canvas, yPos, TEXT("InContact:"), InContact);
 		return;
 	}
 

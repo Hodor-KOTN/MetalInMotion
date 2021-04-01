@@ -2,8 +2,8 @@
 #include "PlayerBallBearing.h"
 #include "EngineMinimal.h"
 #include "GameFramework/PlayerInput.h"
-#include "Engine/Canvas.h"
 #include "DisplayDebugHelpers.h"
+#include "DebugUtilities.h"
 
 APlayerBallBearing::APlayerBallBearing(const FObjectInitializer& objectInitializer)
 	:Super(objectInitializer)
@@ -21,19 +21,14 @@ APlayerBallBearing::APlayerBallBearing(const FObjectInitializer& objectInitializ
 	Camera->SetupAttachment(SpringArm);
 }
 
-void APlayerBallBearing::DisplayDebug(UCanvas* Canvas, const FDebugDisplayInfo& DebugDisplay, float& YL, float& YPos)
+void APlayerBallBearing::DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& debugDisplay, float& yL, float& yPos)
 {
-	if (DebugDisplay.IsDisplayOn(TEXT("ball")))
+	if (debugDisplay.IsDisplayOn(TEXT("ball")))
 	{
-		YPos += 20.f;
-		FDisplayDebugManager& dm = Canvas->DisplayDebugManager;
-		dm.SetDrawColor(FColor::White);
-		dm.DrawString(FString::Printf(TEXT("Input: %s"), *Input.ToString()), DebugXOffset);
-
-		YPos -= 20.f; // go up 20 px cause base class has +20
+		UDebugUtilities::DrawStatistic(canvas, yPos, TEXT("Input:"), Input.ToString());
 	}
 
-	Super::DisplayDebug(Canvas, DebugDisplay, YL, YPos);
+	Super::DisplayDebug(canvas, debugDisplay, yL, yPos);
 }
 
 void APlayerBallBearing::SetupPlayerInputComponent(class UInputComponent* playerInputComponent)

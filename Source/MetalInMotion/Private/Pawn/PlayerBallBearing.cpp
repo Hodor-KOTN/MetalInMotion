@@ -34,16 +34,6 @@ void APlayerBallBearing::DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& 
 	Super::DisplayDebug(canvas, debugDisplay, yL, yPos);
 }
 
-void APlayerBallBearing::PossessedBy(AController* controller)
-{
-	Super::PossessedBy(controller);
-	if (controller->IsLocalPlayerController())
-	{
-		SetActorRotation(FRotator(-25.f, 0.f, 0.f));
-		//AddControllerPitchInput(25.f);
-	}
-}
-
 void APlayerBallBearing::SetupPlayerInputComponent(class UInputComponent* playerInputComponent)
 {
 	check(playerInputComponent);

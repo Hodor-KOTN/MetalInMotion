@@ -24,7 +24,6 @@ private:
 public:
 	APlayerBallBearing(const FObjectInitializer& objectInitializer = FObjectInitializer::Get());
 	virtual void DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& debugDisplay, float& yL, float& yPos) override;
-	virtual void PossessedBy(AController* controller);
 
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* playerInputComponent) override;

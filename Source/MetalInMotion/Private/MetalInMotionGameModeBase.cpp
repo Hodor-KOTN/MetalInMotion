@@ -5,3 +5,11 @@
 AMetalInMotionGameModeBase::AMetalInMotionGameModeBase()
 {
 }
+
+void AMetalInMotionGameModeBase::FinishRestartPlayer(AController* playerController, const FRotator& startRotation)
+{
+	FRotator controlRotation = startRotation;
+	controlRotation.Pitch = -30.f;
+	Super::FinishRestartPlayer(playerController, controlRotation);
+}
+

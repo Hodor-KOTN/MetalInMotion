@@ -13,4 +13,7 @@ class METALINMOTION_API AMetalInMotionGameModeBase : public AGameModeBase
 	
 public:
 	AMetalInMotionGameModeBase();
+
+	virtual void FinishRestartPlayer(AController* playerController, const FRotator& startRotation) override;
+
 };

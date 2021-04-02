@@ -19,11 +19,12 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"));
 	class UCameraComponent* Camera;
 
-	FVector Input = {0.f, 0.f, 0.f};
+	FVector2D Input = {0.f, 0.f};
 
 public:
 	APlayerBallBearing(const FObjectInitializer& objectInitializer = FObjectInitializer::Get());
 	virtual void DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& debugDisplay, float& yL, float& yPos) override;
+	virtual void PossessedBy(AController* controller);
 
 protected:
 	virtual void SetupPlayerInputComponent(class UInputComponent* playerInputComponent) override;

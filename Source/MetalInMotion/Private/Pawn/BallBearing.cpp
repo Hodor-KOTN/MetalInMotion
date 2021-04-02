@@ -33,8 +33,9 @@ void ABallBearing::DisplayDebug(UCanvas* canvas, const FDebugDisplayInfo& debugD
 
 void ABallBearing::Tick(float deltaSeconds)
 {
-	InContact = false;
 	Super::Tick(deltaSeconds);
+
+	InContact = false;
 }
 
 void ABallBearing::NotifyHit(class UPrimitiveComponent* myComp, AActor* other, class UPrimitiveComponent* otherComp, bool selfMoved, FVector hitLocation, FVector hitNormal, FVector normalImpulse, const FHitResult& hit)

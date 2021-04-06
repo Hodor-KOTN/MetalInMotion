@@ -42,6 +42,7 @@ protected:
 	bool InContact = false;
 
 private:
-	FVector InitialLocation = FVector::ZeroVector;
+	FVector InitialLocation;
+	FVector LastContactLocation;
 
 };

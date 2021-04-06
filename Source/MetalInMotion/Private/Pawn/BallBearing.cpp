@@ -35,22 +35,24 @@ void ABallBearing::Tick(float deltaSeconds)
 {
 	Super::Tick(deltaSeconds);
 
-	InContact = false;
+	if (LastContactLocation != GetActorLocation())
+		InContact = false;
 }
 
 void ABallBearing::NotifyHit(class UPrimitiveComponent* myComp, AActor* other, class UPrimitiveComponent* otherComp, bool selfMoved, FVector hitLocation, FVector hitNormal, FVector normalImpulse, const FHitResult& hit)
 {
-	UE_LOG(LogTemp, Log, TEXT("NotifyHit %s - %s"), *GetName(), *other->GetName());
+	//UE_LOG(LogTemp, Log, TEXT("NotifyHit %s - %s"), *GetName(), *other->GetName());
 	Super::NotifyHit(myComp, other, otherComp, selfMoved, hitLocation, hitNormal, normalImpulse, hit);
 
 	InContact = true;
+	LastContactLocation = GetActorLocation();
 }
 
 void ABallBearing::BeginPlay()
 {
 	Super::BeginPlay();
 
-	InitialLocation = BallMesh->GetComponentLocation();
+	InitialLocation = LastContactLocation = GetActorLocation();
 	BallMesh->SetLinearDamping(.5f);
 	BallMesh->SetAngularDamping(.5f);
 }
